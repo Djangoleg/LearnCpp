@@ -8,4 +8,5 @@ add_executable(LearnCpp main_learn.cpp
         mars.h
         payment_amount.cpp
         prime_numbers.cpp
+        char_exercise.cpp
 )

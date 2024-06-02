@@ -9,4 +9,6 @@ add_executable(LearnCpp main_learn.cpp
         payment_amount.cpp
         prime_numbers.cpp
         char_exercise.cpp
+        algorithms.cpp
+        algorithms.h
 )

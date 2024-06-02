@@ -5,6 +5,23 @@
 
 using namespace std;
 
+/*
+Use ansii extended:
+
+    setlocale(LC_ALL, "");
+
+    wchar_t a[] = L"а";
+    wchar_t z[] = L"я";
+
+    int start = (int) a[0];
+    int end = (int) z[0];
+
+    for (int i = start; i <= end; i++)
+    {
+        wcout << (wchar_t) i << "\n";
+    }
+*/
+
 void char_task()
 {
     char ch;

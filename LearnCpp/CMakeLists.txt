@@ -11,4 +11,5 @@ add_executable(LearnCpp main_learn.cpp
         char_exercise.cpp
         algorithms.cpp
         algorithms.h
+        string_revers.cpp
 )

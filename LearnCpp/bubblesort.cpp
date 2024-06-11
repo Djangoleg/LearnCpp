@@ -2,7 +2,7 @@
 // Created by ok on 02.06.24.
 //
 #include <iostream>
-#include "algorithms.h"
+#include "bubblesort.h"
 
 using namespace std;
 

@@ -9,7 +9,9 @@ add_executable(LearnCpp main_learn.cpp
         payment_amount.cpp
         prime_numbers.cpp
         char_exercise.cpp
-        algorithms.cpp
-        algorithms.h
+        bubblesort.cpp
+        bubblesort.h
         string_revers.cpp
+        quicksort.cpp
+        quicksort.h
 )

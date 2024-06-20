@@ -14,4 +14,6 @@ add_executable(LearnCpp main_learn.cpp
         string_revers.cpp
         quicksort.cpp
         quicksort.h
+        byte_shift.cpp
+        byte_shift.h
 )

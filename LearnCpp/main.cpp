@@ -10,7 +10,6 @@
 
 using namespace std;
 
-int my_avg(int i);
 
 int main()
 {

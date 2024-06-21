@@ -3,10 +3,10 @@
 //#include "payment_amount.h"
 //#include "prime_numbers.h"
 //#include "char_exercise.h"
-#include "bubblesort.h"
-#include "string_revers.h"
-#include "quicksort.h"
-#include "byte_shift.h"
+#include "Lessons/bubblesort.h"
+#include "Lessons/string_revers.h"
+#include "Lessons/quicksort.h"
+#include "Lessons/byte_shift.h"
 
 using namespace std;
 

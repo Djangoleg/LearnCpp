@@ -3,17 +3,17 @@ project(LearnCpp)
 
 set(CMAKE_CXX_STANDARD 17)
 
-add_executable(LearnCpp main_learn.cpp
-        mars.cpp
-        mars.h
-        payment_amount.cpp
-        prime_numbers.cpp
-        char_exercise.cpp
-        bubblesort.cpp
-        bubblesort.h
-        string_revers.cpp
-        quicksort.cpp
-        quicksort.h
-        byte_shift.cpp
-        byte_shift.h
+add_executable(LearnCpp main.cpp
+        Lessons/mars.cpp
+        Lessons/mars.h
+        Lessons/payment_amount.cpp
+        Lessons/prime_numbers.cpp
+        Lessons/char_exercise.cpp
+        Lessons/bubblesort.cpp
+        Lessons/bubblesort.h
+        Lessons/string_revers.cpp
+        Lessons/quicksort.cpp
+        Lessons/quicksort.h
+        Lessons/byte_shift.cpp
+        Lessons/byte_shift.h
 )

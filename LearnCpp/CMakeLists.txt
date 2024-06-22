@@ -16,4 +16,5 @@ add_executable(LearnCpp main.cpp
         Lessons/quicksort.h
         Lessons/byte_shift.cpp
         Lessons/byte_shift.h
+        Сlasses/Queue.cpp
 )

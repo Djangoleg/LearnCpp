@@ -10,7 +10,7 @@ Use:
 
 1) Decode encode string:
     char msg[] = "This is a test.";
-    char *key = "xanadu";
+    char *key = "proverka321";
     int key_len = strlen(key);
     int rotnum;
 
@@ -18,7 +18,7 @@ Use:
 
     for (int i = 0; i < strlen(msg); i++)
     {
-        rotnum = key[i % key_len] % 8;
+        rotnum = i == 0 ? key[3 % key_len] % 8 : key[i % key_len] % 8;
         msg[i] = left_rotate(msg[i], rotnum);
     }
 
@@ -26,7 +26,7 @@ Use:
 
     for (int i = 0; i < strlen(msg); i++)
     {
-        rotnum = key[i % key_len] % 8;
+        rotnum = i == 0 ? key[3 % key_len] % 8 : key[i % key_len] % 8;
         msg[i] = right_rotate(msg[i], rotnum);
     }
 

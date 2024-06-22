@@ -7,33 +7,44 @@
 #include "Lessons/string_revers.h"
 #include "Lessons/quicksort.h"
 #include "Lessons/byte_shift.h"
+#include "Сlasses/Queue.cpp"
 
 using namespace std;
 
 
 int main()
 {
-    char msg[] = "This is a test.";
-    char *key = "xanadu";
-    int key_len = strlen(key);
-    int rotnum;
-
-    cout << "Original message:" << msg << "\n";
-
-    for (int i = 0; i < strlen(msg); i++)
+    Queue bigQueue(100);
+    for (int i = 0; i < 26; i++)
     {
-        rotnum = key[i % key_len] % 8;
-        msg[i] = left_rotate(msg[i], rotnum);
+        bigQueue.set('A' + i);
     }
 
-    cout << "Encoded message: " << msg << "\n";
-
-    for (int i = 0; i < strlen(msg); i++)
+    for (int i = 0; i < 26; i++)
     {
-        rotnum = key[i % key_len] % 8;
-        msg[i] = right_rotate(msg[i], rotnum);
+        cout << bigQueue.get() << ",";
     }
 
-    cout << "Decoded message: " << msg << "\n";
+    cout << "\n\n";
+
+    Queue smallQueue(10);
+
+    for (int i = 0; i < 26; i++)
+    {
+        if (!smallQueue.is_full())
+        {
+            smallQueue.set('Z' - i);
+        }
+    }
+
+    for (int i = 0; i < 26; i++)
+    {
+        if (!smallQueue.is_empty())
+        {
+            cout << smallQueue.get() << ",";
+        }
+    }
+
+    cout << "\n\n";
 }
 

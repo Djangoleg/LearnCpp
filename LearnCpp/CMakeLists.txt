@@ -17,4 +17,8 @@ add_executable(LearnCpp main.cpp
         Lessons/byte_shift.cpp
         Lessons/byte_shift.h
         Сlasses/Queue.cpp
+        Сlasses/ClassWithPointer.cpp
+        Сlasses/ClassWithPointer.h
+        Сlasses/OperatorOverload.cpp
+        Сlasses/OperatorOverload.h
 )

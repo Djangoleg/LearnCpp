@@ -8,43 +8,50 @@
 #include "Lessons/quicksort.h"
 #include "Lessons/byte_shift.h"
 #include "Сlasses/Queue.cpp"
+#include "Сlasses/ClassWithPointer.h"
+#include "Сlasses/OperatorOverload.h"
 
 using namespace std;
 
 
 int main()
 {
-    Queue bigQueue(100);
-    for (int i = 0; i < 26; i++)
-    {
-        bigQueue.set('A' + i);
-    }
+    ThreeD a(1,2,3), b(10, 10, 10), c;
 
-    for (int i = 0; i < 26; i++)
-    {
-        cout << bigQueue.get() << ",";
-    }
+    cout << "Original value of a: ";
+    a.show();
 
-    cout << "\n\n";
+    cout << "Original value of b: ";
+    b.show();
 
-    Queue smallQueue(10);
+    cout << "\n";
 
-    for (int i = 0; i < 26; i++)
-    {
-        if (!smallQueue.is_full())
-        {
-            smallQueue.set('Z' - i);
-        }
-    }
+    c = a + b;
 
-    for (int i = 0; i < 26; i++)
-    {
-        if (!smallQueue.is_empty())
-        {
-            cout << smallQueue.get() << ",";
-        }
-    }
+    cout << "Value c after c = a + b: ";
+    c.show();
 
-    cout << "\n\n";
+    c = a + b + c;
+
+    cout << "Value c after c = a + b + c: ";
+    c.show();
+
+    cout << "\n";
+
+    cout << "Value a: ";
+    a.show();
+
+    c = b = a;
+    cout << "Value c after c = b = a: ";
+    c.show();
+
+    cout << "Value b after c = b = a: ";
+    b.show();
+
+    cout << "Value a after ++a: ";
+    ++a;
+    a.show();
+
+    return 0;
 }
 

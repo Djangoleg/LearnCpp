@@ -13,7 +13,11 @@ public:
     ThreeD(int i, int j, int k) { x = i; y = j; z = k; }
 
     ThreeD operator+(ThreeD op);
+    ThreeD operator-(ThreeD op);
     ThreeD operator++();
+    ThreeD operator--();
+    ThreeD operator++(int notused);
+    ThreeD operator--(int notused);
     ThreeD& operator=(ThreeD op);
 
     void show();

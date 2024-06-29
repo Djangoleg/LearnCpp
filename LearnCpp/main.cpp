@@ -52,6 +52,23 @@ int main()
     ++a;
     a.show();
 
+    cout << "Value a after a++: ";
+    a++;
+    a.show();
+
+    cout << "Value a after --a: ";
+    --a;
+    a.show();
+
+    cout << "Value a after a--: ";
+    a--;
+    a.show();
+
+    c = a - b;
+
+    cout << "Value c after c = a - b: ";
+    c.show();
+
     return 0;
 }
 

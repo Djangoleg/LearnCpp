@@ -1,22 +1,8 @@
-#include <iostream>
-#include <cstring>
-//#include "payment_amount.h"
-//#include "prime_numbers.h"
-//#include "char_exercise.h"
-//#include "Lessons/bubblesort.h"
-//#include "Lessons/string_revers.h"
-//#include "Lessons/quicksort.h"
-//#include "Lessons/byte_shift.h"
-//#include "Сlasses/Queue.cpp"
-//#include "Сlasses/ClassWithPointer.h"
-//#include "Сlasses/OperatorOverload.h"
-#include "Сlasses/CharSet.h"
+//
+// Created by ok on 03.07.24.
+//
 
-using namespace std;
-
-
-int main()
-{
+/*
     CharSet s1,s2,s3;
 
     s1 = s1 + 'A';
@@ -120,7 +106,105 @@ int main()
 
     cout << "s2 After adding C B A: ";
     s2.showset();
+ */
 
-    return 0;
+#include "CharSet.h"
+#include <iostream>
+
+using namespace std;
+
+int CharSet::find(char ch)
+{
+    for (int i = 0; i < len; i++)
+    {
+        if (members[i] == ch)
+        {
+            return i;
+        }
+    }
+
+    return -1;
 }
 
+void CharSet::showset()
+{
+    cout << "{ ";
+    for (int i = 0; i < len; i++)
+    {
+        cout << members[i] << " ";
+    }
+
+    cout << "}\n";
+}
+
+bool CharSet::isMember(char ch)
+{
+    if (find(ch) != -1)
+    {
+        return true;
+    }
+
+    return false;
+}
+
+CharSet CharSet::operator+(char ch)
+{
+    CharSet newSet;
+
+    if (len == MaxSize)
+    {
+        cout << "Set is full.\n";
+        return *this;
+    }
+
+    newSet = *this;
+
+    if (find(ch) == -1)
+    {
+        newSet.members[newSet.len] = ch;
+        newSet.len++;
+    }
+
+    return  newSet;
+}
+
+CharSet CharSet::operator-(char ch)
+{
+    CharSet newSet;
+
+    int i = find(ch);
+
+    for (int j = 0; j < len; j++)
+    {
+        if (j != i)
+        {
+            newSet = newSet + members[j];
+        }
+    }
+
+    return newSet;
+}
+
+CharSet CharSet::operator+(CharSet ob)
+{
+    CharSet newSet = *this;
+
+    for (int i = 0; i < ob.len; i++)
+    {
+        newSet = newSet + ob.members[i];
+    }
+
+    return newSet;
+}
+
+CharSet CharSet::operator-(CharSet ob)
+{
+    CharSet newSet = *this;
+
+    for (int i = 0; i < ob.len; i++)
+    {
+        newSet = newSet - ob.members[i];
+    }
+
+    return newSet;
+}

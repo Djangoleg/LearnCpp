@@ -21,4 +21,6 @@ add_executable(LearnCpp main.cpp
         Сlasses/ClassWithPointer.h
         Сlasses/OperatorOverload.cpp
         Сlasses/OperatorOverload.h
+        Сlasses/CharSet.cpp
+        Сlasses/CharSet.h
 )

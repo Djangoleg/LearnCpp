@@ -23,4 +23,6 @@ add_executable(LearnCpp main.cpp
         Сlasses/OperatorOverload.h
         Сlasses/CharSet.cpp
         Сlasses/CharSet.h
+        Сlasses/Inheritance/Vehicle.cpp
+        Сlasses/Inheritance/Vehicle.h
 )

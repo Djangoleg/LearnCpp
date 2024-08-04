@@ -25,4 +25,12 @@ add_executable(LearnCpp main.cpp
         Сlasses/CharSet.h
         Сlasses/Inheritance/Vehicle.cpp
         Сlasses/Inheritance/Vehicle.h
+        Сlasses/Inheritance/Shapes/Base/TwoDShape.cpp
+        Сlasses/Inheritance/Shapes/Base/TwoDShape.h
+        Сlasses/Inheritance/Shapes/Triangle.cpp
+        Сlasses/Inheritance/Shapes/Triangle.h
+        Сlasses/Inheritance/Shapes/Rectangle.cpp
+        Сlasses/Inheritance/Shapes/Rectangle.h
+        Сlasses/Inheritance/Shapes/Circle.cpp
+        Сlasses/Inheritance/Shapes/Circle.h
 )

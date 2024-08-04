@@ -1,15 +1,10 @@
-#include <iostream>
-#include <cstring>
-#include "Сlasses/Inheritance/Shapes/Triangle.h"
-#include "Сlasses/Inheritance/Shapes/Circle.h"
-#include "Сlasses/Inheritance/Shapes/Rectangle.h"
-#include "Сlasses/Inheritance/Shapes/Base/TwoDShape.h"
+//
+// Created by ok on 04.08.24.
+//
 
-using namespace std;
+#include "TwoDShape.h"
 
-
-int main()
-{
+/*
     Triangle tr = Triangle((char *) "right", 8.0, 12.0);
     Rectangle rt = Rectangle(8.0, 12.0);
     Rectangle rt2 = Rectangle(10.0);
@@ -28,7 +23,24 @@ int main()
         cout << "aria is " << shape->calcArea() << "\n";
         cout << "\n";
     }
+*/
 
-    return 0;
+void TwoDShape::showDim() {
+    cout << "width: " << width << "; height: " << height << ";\n";
 }
 
+double TwoDShape::getWidth() {
+    return width;
+}
+
+double TwoDShape::getHeight() {
+    return height;
+}
+
+void TwoDShape::setWidth(double w) {
+    width = w;
+}
+
+void TwoDShape::setHeight(double h) {
+    height = h;
+}

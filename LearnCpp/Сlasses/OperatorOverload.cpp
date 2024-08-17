@@ -58,6 +58,12 @@ using namespace std;
 
     cout << "Value c after c = a - b: ";
     c.show();
+
+    ThreeD x(1,2,3);
+    cout << x;
+    cin >> x;
+    cout << x;
+
  */
 
 ThreeD ThreeD::operator+(ThreeD op)
@@ -130,4 +136,19 @@ ThreeD& ThreeD::operator=(ThreeD op)
 void ThreeD::show()
 {
     cout << x << ", " << y << ", " << z << ";\n";
+}
+
+ostream &operator<<(ostream &stream, ThreeD op)
+{
+    stream << op.x << ", ";
+    stream << op.y << ", ";
+    stream << op.z << "\n";
+    return stream;
+}
+
+istream &operator>>(istream &stream, ThreeD &op)
+{
+    cout << "Enter X,Y,Z values: ";
+    stream >> op.x >> op.y >> op.z;
+    return  stream;
 }

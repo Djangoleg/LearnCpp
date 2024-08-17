@@ -4,7 +4,8 @@
 
 #ifndef LEARNCPP_OPERATOROVERLOAD_H
 #define LEARNCPP_OPERATOROVERLOAD_H
-
+#include <iostream>
+using namespace std;
 
 class ThreeD {
     int x,y,z;
@@ -19,6 +20,8 @@ public:
     ThreeD operator++(int notused);
     ThreeD operator--(int notused);
     ThreeD& operator=(ThreeD op);
+    friend ostream &operator<<(ostream &stream, ThreeD op);
+    friend istream &operator>>(istream &stream, ThreeD &op);
 
     void show();
 

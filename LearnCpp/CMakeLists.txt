@@ -33,4 +33,6 @@ add_executable(LearnCpp main.cpp
         Сlasses/Inheritance/Shapes/Rectangle.h
         Сlasses/Inheritance/Shapes/Circle.cpp
         Сlasses/Inheritance/Shapes/Circle.h
+        Сlasses/FileManager.cpp
+        Сlasses/FileManager.h
 )

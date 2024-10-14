@@ -29,5 +29,12 @@ private:
     Ui::MainWindow *ui;
     QNetworkAccessManager *networkManager; // Manager for HTTP requests
     QString weatherIconURL;
+    struct Weather
+    {
+        QString temp;
+        QString description;
+        QString humidity;
+    };
+    Weather *myWeather;
 };
 #endif // MAINWINDOW_H

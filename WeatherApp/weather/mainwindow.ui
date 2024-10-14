@@ -11,100 +11,56 @@
    </rect>
   </property>
   <property name="windowTitle">
-   <string>MainWindow</string>
+   <string>My Weather</string>
+  </property>
+  <property name="windowIcon">
+   <iconset theme="QIcon::ThemeIcon::WeatherStorm"/>
   </property>
   <widget class="QWidget" name="centralwidget">
-   <widget class="QLineEdit" name="cityLineEdit">
-    <property name="geometry">
-     <rect>
-      <x>60</x>
-      <y>50</y>
-      <width>113</width>
-      <height>26</height>
-     </rect>
-    </property>
-    <property name="text">
-     <string>London</string>
-    </property>
-   </widget>
-   <widget class="QLabel" name="temperatureLabel">
-    <property name="geometry">
-     <rect>
-      <x>60</x>
-      <y>120</y>
-      <width>161</width>
-      <height>18</height>
-     </rect>
-    </property>
-    <property name="text">
-     <string>temperatureLabel</string>
-    </property>
-   </widget>
-   <widget class="QLabel" name="humidityLabel">
-    <property name="geometry">
-     <rect>
-      <x>60</x>
-      <y>160</y>
-      <width>151</width>
-      <height>18</height>
-     </rect>
-    </property>
-    <property name="text">
-     <string>humidityLabel</string>
-    </property>
-   </widget>
-   <widget class="QLabel" name="descriptionLabel">
-    <property name="geometry">
-     <rect>
-      <x>60</x>
-      <y>200</y>
-      <width>341</width>
-      <height>21</height>
-     </rect>
-    </property>
-    <property name="text">
-     <string>descriptionLabel</string>
-    </property>
-   </widget>
-   <widget class="QLabel" name="statusLabel">
-    <property name="geometry">
-     <rect>
-      <x>10</x>
-      <y>530</y>
-      <width>781</width>
-      <height>21</height>
-     </rect>
-    </property>
-    <property name="text">
-     <string>statusLabel</string>
-    </property>
-   </widget>
-   <widget class="QPushButton" name="getWeather">
-    <property name="geometry">
-     <rect>
-      <x>240</x>
-      <y>50</y>
-      <width>87</width>
-      <height>26</height>
-     </rect>
-    </property>
-    <property name="text">
-     <string>Get</string>
-    </property>
-   </widget>
-   <widget class="QLabel" name="pixmapLabel">
-    <property name="geometry">
-     <rect>
-      <x>60</x>
-      <y>240</y>
-      <width>151</width>
-      <height>151</height>
-     </rect>
-    </property>
-    <property name="text">
-     <string>pixmapLabel</string>
-    </property>
-   </widget>
+   <layout class="QGridLayout" name="gridLayout">
+    <item row="0" column="0">
+     <widget class="QLineEdit" name="cityLineEdit">
+      <property name="text">
+       <string>London</string>
+      </property>
+     </widget>
+    </item>
+    <item row="2" column="0">
+     <widget class="QLabel" name="humidityLabel">
+      <property name="text">
+       <string>humidityLabel</string>
+      </property>
+     </widget>
+    </item>
+    <item row="1" column="0">
+     <widget class="QLabel" name="temperatureLabel">
+      <property name="text">
+       <string>temperatureLabel</string>
+      </property>
+     </widget>
+    </item>
+    <item row="4" column="0">
+     <widget class="QLabel" name="pixmapLabel">
+      <property name="text">
+       <string>pixmapLabel</string>
+      </property>
+     </widget>
+    </item>
+    <item row="3" column="0" colspan="2">
+     <widget class="QLabel" name="descriptionLabel">
+      <property name="text">
+       <string>descriptionLabel</string>
+      </property>
+     </widget>
+    </item>
+    <item row="0" column="1">
+     <widget class="QPushButton" name="getWeather">
+      <property name="text">
+       <string>Get</string>
+      </property>
+     </widget>
+    </item>
+   </layout>
   </widget>
   <widget class="QMenuBar" name="menubar">
    <property name="geometry">

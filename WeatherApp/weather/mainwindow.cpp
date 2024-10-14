@@ -7,6 +7,7 @@
 #include <QJsonObject>
 #include <QtCore/QJsonArray>
 #include <QPixmap>
+#include <QStatusBar>
 
 
 MainWindow::MainWindow(QWidget *parent)
@@ -14,12 +15,11 @@ MainWindow::MainWindow(QWidget *parent)
     , ui(new Ui::MainWindow)
 {
     ui->setupUi(this);
-
-    ui->statusLabel->setText("");
-    ui->temperatureLabel->setText("");
-    ui->humidityLabel->setText("");
-    ui->descriptionLabel->setText("");
-    ui->pixmapLabel->setText("");
+    ui->temperatureLabel->clear();
+    ui->humidityLabel->clear();
+    ui->descriptionLabel->clear();
+    ui->pixmapLabel->clear();
+    statusBar()->showMessage(tr("Hi, dude!"), 2000);
 }
 
 MainWindow::~MainWindow()
@@ -44,10 +44,14 @@ void MainWindow::onWeatherIconReceived(QNetworkReply* reply) {
         QPixmap pm;
         pm.loadFromData(responseData);
         ui->pixmapLabel->setPixmap(pm);
-        ui->pixmapLabel->setScaledContents(true);
+
+        ui->temperatureLabel->setText(myWeather->temp);
+        ui->humidityLabel->setText(myWeather->humidity);
+        ui->descriptionLabel->setText(myWeather->description);
+
     } else {
         // Handle error case
-        ui->statusLabel->setText("Error fetching weather icon.");
+        statusBar()->showMessage(tr("Error fetching weather icon."));
     }
     reply->deleteLater();
 }
@@ -57,7 +61,7 @@ void MainWindow::fetchWeatherData() {
     connect(networkManager, &QNetworkAccessManager::finished, this, &MainWindow::onWeatherDataReceived);
 
     QString city = ui->cityLineEdit->text();
-    QString apiKey = "xxxxxxxxxxx";
+    QString apiKey = "XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX";
     QString url = "http://api.openweathermap.org/data/2.5/weather?q=" + city + "&appid=" + apiKey + "&units=metric";
     QNetworkRequest request;
     request.setUrl(QUrl(url));
@@ -85,25 +89,26 @@ void MainWindow::onWeatherDataReceived(QNetworkReply *reply) {
         fetchWeatherIcon();
 
         // Update the UI with the fetched data
-        ui->temperatureLabel->setText(QString::number(temp) + "°C");
-        ui->humidityLabel->setText("Humidity: " + QString::number(humidity) + "%");
-        ui->descriptionLabel->setText("Condition: " + weatherDescription);
 
-        ui->statusLabel->setText("Data received");
+        myWeather->temp = "Temp: " + QString::number(temp) + "°C";
+        myWeather->humidity = "Humidity: " + QString::number(humidity) + "%";
+        myWeather->description = "Condition: " + weatherDescription;
+
+        statusBar()->showMessage(tr("Data received"), 2000);
+
     } else {
         // Handle error case
-        ui->statusLabel->setText("Error fetching weather data.");
+        statusBar()->showMessage(tr("Error fetching weather data"));
     }
     reply->deleteLater();
 }
 
 void MainWindow::on_getWeather_clicked() {
 
-    ui->statusLabel->setText("Data retrieval start");
-
-    ui->temperatureLabel->setText("");
-    ui->humidityLabel->setText("");
-    ui->descriptionLabel->setText("");
-
+    statusBar()->showMessage(tr("Data retrieval start"));
+    ui->temperatureLabel->clear();
+    ui->humidityLabel->clear();
+    ui->descriptionLabel->clear();
+    ui->pixmapLabel->clear();
     fetchWeatherData();
 }

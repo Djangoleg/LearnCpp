@@ -3,6 +3,7 @@
 
 #include <QMainWindow>
 #include <QtNetwork/QNetworkAccessManager>
+#include "settingsform.h"
 
 QT_BEGIN_NAMESPACE
 namespace Ui {
@@ -25,15 +26,18 @@ private slots:
     void onWeatherIconReceived(QNetworkReply* reply); // Slot to handle the reply
     void on_getWeather_clicked();
 
+    void on_actionExit_triggered();
+
+    void on_actionSettings_triggered();
+
 private:
     Ui::MainWindow *ui;
+    SettingsForm *settingsForm;
     QNetworkAccessManager *networkManager; // Manager for HTTP requests
     QString weatherIconURL;
     struct Weather
     {
-        QString temp;
-        QString description;
-        QString humidity;
+        QString temp, description, humidity;
     };
     Weather *myWeather;
 };

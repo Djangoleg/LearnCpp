@@ -15,6 +15,8 @@ MainWindow::MainWindow(QWidget *parent)
     , ui(new Ui::MainWindow)
 {
     ui->setupUi(this);
+    settingsForm = new SettingsForm(this);
+    myWeather = new Weather;
     ui->temperatureLabel->clear();
     ui->humidityLabel->clear();
     ui->descriptionLabel->clear();
@@ -61,7 +63,7 @@ void MainWindow::fetchWeatherData() {
     connect(networkManager, &QNetworkAccessManager::finished, this, &MainWindow::onWeatherDataReceived);
 
     QString city = ui->cityLineEdit->text();
-    QString apiKey = "XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX";
+    QString apiKey = "5ac1d70abefeec7a9f7660daf2c81bc0";
     QString url = "http://api.openweathermap.org/data/2.5/weather?q=" + city + "&appid=" + apiKey + "&units=metric";
     QNetworkRequest request;
     request.setUrl(QUrl(url));
@@ -86,13 +88,12 @@ void MainWindow::onWeatherDataReceived(QNetworkReply *reply) {
 
         QString weatherIcon = weather.value("icon").toString();
         weatherIconURL = "https://openweathermap.org/img/wn/" + weatherIcon + "@4x.png";
-        fetchWeatherIcon();
-
-        // Update the UI with the fetched data
 
         myWeather->temp = "Temp: " + QString::number(temp) + "°C";
         myWeather->humidity = "Humidity: " + QString::number(humidity) + "%";
         myWeather->description = "Condition: " + weatherDescription;
+
+        fetchWeatherIcon();
 
         statusBar()->showMessage(tr("Data received"), 2000);
 
@@ -112,3 +113,15 @@ void MainWindow::on_getWeather_clicked() {
     ui->pixmapLabel->clear();
     fetchWeatherData();
 }
+
+void MainWindow::on_actionExit_triggered()
+{
+    close();
+}
+
+
+void MainWindow::on_actionSettings_triggered()
+{
+    settingsForm->show();
+}
+

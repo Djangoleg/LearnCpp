@@ -63,7 +63,7 @@ void MainWindow::fetchWeatherData() {
     connect(networkManager, &QNetworkAccessManager::finished, this, &MainWindow::onWeatherDataReceived);
 
     QString city = ui->cityLineEdit->text();
-    QString apiKey = "5ac1d70abefeec7a9f7660daf2c81bc0";
+    QString apiKey = "XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX";
     QString url = "http://api.openweathermap.org/data/2.5/weather?q=" + city + "&appid=" + apiKey + "&units=metric";
     QNetworkRequest request;
     request.setUrl(QUrl(url));

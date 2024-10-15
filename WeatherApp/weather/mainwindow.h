@@ -3,6 +3,7 @@
 
 #include <QMainWindow>
 #include <QtNetwork/QNetworkAccessManager>
+#include <QSettings>
 #include "settingsform.h"
 
 QT_BEGIN_NAMESPACE
@@ -21,20 +22,17 @@ public:
 
 private slots:
     void fetchWeatherData(); // Slot to fetch data
-    void fetchWeatherIcon(); // Slot to fetch weather icon
+    void fetchWeatherIcon(QString weatherIconName); // Slot to fetch weather icon
     void onWeatherDataReceived(QNetworkReply* reply); // Slot to handle the reply
     void onWeatherIconReceived(QNetworkReply* reply); // Slot to handle the reply
     void on_getWeather_clicked();
-
     void on_actionExit_triggered();
-
     void on_actionSettings_triggered();
 
 private:
     Ui::MainWindow *ui;
     SettingsForm *settingsForm;
     QNetworkAccessManager *networkManager; // Manager for HTTP requests
-    QString weatherIconURL;
     struct Weather
     {
         QString temp, description, humidity;

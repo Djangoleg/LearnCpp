@@ -18,6 +18,8 @@ public:
 private slots:
     void on_closeButton_clicked();
 
+    void on_saveButton_clicked();
+
 private:
     Ui::SettingsForm *ui;
 };

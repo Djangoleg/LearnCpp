@@ -1,5 +1,6 @@
 #include "mainwindow.h"
 #include "./ui_mainwindow.h"
+#include "settings.h"
 #include <QtNetwork/QNetworkAccessManager>
 #include <QtNetwork/QNetworkReply>
 #include <QtNetwork/QNetworkRequest>
@@ -8,6 +9,7 @@
 #include <QtCore/QJsonArray>
 #include <QPixmap>
 #include <QStatusBar>
+#include <QMessageBox>
 
 
 MainWindow::MainWindow(QWidget *parent)
@@ -22,6 +24,7 @@ MainWindow::MainWindow(QWidget *parent)
     ui->descriptionLabel->clear();
     ui->pixmapLabel->clear();
     statusBar()->showMessage(tr("Hi, dude!"), 2000);
+    settings.sync();
 }
 
 MainWindow::~MainWindow()
@@ -29,15 +32,23 @@ MainWindow::~MainWindow()
     delete ui;
 }
 
-void MainWindow::fetchWeatherIcon() {
-    networkManager = new QNetworkAccessManager(this);
-    connect(networkManager, &QNetworkAccessManager::finished, this, &MainWindow::onWeatherIconReceived);
+void MainWindow::fetchWeatherIcon(QString weatherIconName) {
+    QString iconUrl = settings.value("icon_url").toString();
+    QString weatherIconURL = iconUrl + weatherIconName + "@4x.png";
 
-    QNetworkRequest request;
-    request.setUrl(QUrl(weatherIconURL));
-
-    // Send the GET request
-    networkManager->get(request);
+    if (!iconUrl.isEmpty() && !weatherIconURL.isEmpty())
+    {
+        networkManager = new QNetworkAccessManager(this);
+        connect(networkManager, &QNetworkAccessManager::finished, this, &MainWindow::onWeatherIconReceived);
+        QNetworkRequest request;
+        request.setUrl(QUrl(weatherIconURL));
+        // Send the GET request
+        networkManager->get(request);
+    }
+    else
+    {
+        statusBar()->showMessage(tr("Check icon URL in settings."));
+    }
 }
 
 void MainWindow::onWeatherIconReceived(QNetworkReply* reply) {
@@ -63,13 +74,27 @@ void MainWindow::fetchWeatherData() {
     connect(networkManager, &QNetworkAccessManager::finished, this, &MainWindow::onWeatherDataReceived);
 
     QString city = ui->cityLineEdit->text();
-    QString apiKey = "XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX";
-    QString url = "http://api.openweathermap.org/data/2.5/weather?q=" + city + "&appid=" + apiKey + "&units=metric";
-    QNetworkRequest request;
-    request.setUrl(QUrl(url));
 
-    // Send the GET request
-    networkManager->get(request);
+    // TODO: Check not null and empty.
+
+    QString key = settings.value("key").toString();
+    QString url = settings.value("api_url").toString();
+
+    if (!key.isEmpty() && !url.isEmpty())
+    {
+        QString apiKey = settings.value("key").toString();
+        QString apiUrl = settings.value("api_url").toString() + "?q=" + city + "&appid=" + apiKey + "&units=metric";
+
+        QNetworkRequest request;
+        request.setUrl(QUrl(apiUrl));
+
+        // Send the GET request
+        networkManager->get(request);
+    }
+    else
+    {
+        QMessageBox::information(this, "Warning", "Check settings!");
+    }
 }
 
 void MainWindow::onWeatherDataReceived(QNetworkReply *reply) {
@@ -85,15 +110,13 @@ void MainWindow::onWeatherDataReceived(QNetworkReply *reply) {
 
         QJsonObject weather = jsonObj.value("weather").toArray().at(0).toObject();
         QString weatherDescription = weather.value("description").toString();
-
-        QString weatherIcon = weather.value("icon").toString();
-        weatherIconURL = "https://openweathermap.org/img/wn/" + weatherIcon + "@4x.png";
+        QString weatherIconName = weather.value("icon").toString();
 
         myWeather->temp = "Temp: " + QString::number(temp) + "°C";
         myWeather->humidity = "Humidity: " + QString::number(humidity) + "%";
         myWeather->description = "Condition: " + weatherDescription;
 
-        fetchWeatherIcon();
+        fetchWeatherIcon(weatherIconName);
 
         statusBar()->showMessage(tr("Data received"), 2000);
 
@@ -124,4 +147,3 @@ void MainWindow::on_actionSettings_triggered()
 {
     settingsForm->show();
 }
-

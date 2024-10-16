@@ -25,11 +25,41 @@ MainWindow::MainWindow(QWidget *parent)
     ui->pixmapLabel->clear();
     statusBar()->showMessage(tr("Hi, dude!"), 2000);
     settings.sync();
+    fillCitiesToComboBox();
 }
 
 MainWindow::~MainWindow()
 {
     delete ui;
+}
+
+void MainWindow::fillCitiesToComboBox() {
+
+    QStringList ci;
+    ci << "London" << "New York" << "Tokyo";
+
+    QVariant rawCities = settings.value("cities");
+
+    if (!rawCities.isNull())
+    {
+        QStringList cities = rawCities.toStringList();
+        if (!cities.isEmpty())
+        {
+            ui->cityComboBox->addItems(cities);
+        }
+        else
+        {
+            ui->cityComboBox->addItem("London");
+            settings.setValue("cities", ci);
+            settings.sync();
+        }
+    }
+    else
+    {
+        ui->cityComboBox->addItem("London");
+        settings.setValue("cities", ci);
+        settings.sync();
+    }
 }
 
 void MainWindow::fetchWeatherIcon(QString weatherIconName) {
@@ -73,9 +103,7 @@ void MainWindow::fetchWeatherData() {
     networkManager = new QNetworkAccessManager(this);
     connect(networkManager, &QNetworkAccessManager::finished, this, &MainWindow::onWeatherDataReceived);
 
-    QString city = ui->cityLineEdit->text();
-
-    // TODO: Check not null and empty.
+    QString city = ui->cityComboBox->currentText();
 
     QString key = settings.value("key").toString();
     QString url = settings.value("api_url").toString();

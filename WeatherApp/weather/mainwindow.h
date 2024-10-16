@@ -28,6 +28,7 @@ private slots:
     void on_getWeather_clicked();
     void on_actionExit_triggered();
     void on_actionSettings_triggered();
+    void fillCitiesToComboBox();
 
 private:
     Ui::MainWindow *ui;
